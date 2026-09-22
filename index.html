@@ -16,9 +16,9 @@
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.1);
         }
         .glow-text { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
-        .avatar-glow {
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%);
+        .photo-frame {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
         }
     </style>
 </head>
@@ -72,17 +72,14 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
-                        <!-- DIGITAL BADGE AVATAR & ORIGINAL PHOTO WEB LINK -->
-                        <div class="md:col-span-4 flex flex-col items-center gap-2">
-                            <div class="w-40 h-40 rounded-2xl avatar-glow border-2 border-cyan-500/40 flex flex-col items-center justify-center relative overflow-hidden">
-                                <div id="player-avatar-svg" class="w-full h-full flex items-center justify-center p-3"></div>
-                                <div class="absolute bottom-1.5 inset-x-2 text-center bg-slate-950/80 backdrop-blur py-0.5 rounded border border-slate-800">
+                        <!-- EXACT PLAYER PHOTO PORTRAIT -->
+                        <div class="md:col-span-4 flex justify-center">
+                            <div class="w-36 h-36 md:w-40 md:h-40 rounded-2xl photo-frame border-2 border-cyan-500/40 overflow-hidden relative group">
+                                <img id="player-photo" src="" alt="Player Photo" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute bottom-0 inset-x-0 text-center bg-slate-950/80 backdrop-blur py-0.5 border-t border-slate-800">
                                     <span class="text-[9px] tracking-widest text-cyan-400 uppercase font-bold">TEAM INDIA</span>
                                 </div>
                             </div>
-                            <a id="player-wiki-link" href="#" target="_blank" class="text-[11px] text-cyan-400 hover:text-cyan-300 underline flex items-center gap-1 font-medium transition-all">
-                                🔗 View Original Photo Source
-                            </a>
                         </div>
 
                         <div class="md:col-span-8 flex flex-col justify-center">
@@ -182,21 +179,21 @@
 
     <script>
         const players = [
-            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, type: "batter", refUrl: "https://commons.wikimedia.org/wiki/File:Virat_Kohli_portrait.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, type: "batter", refUrl: "https://commons.wikimedia.org/wiki/File:Rohit_Sharma_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, type: "bowler", refUrl: "https://commons.wikimedia.org/wiki/File:Jasprit_Bumrah_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, type: "batter", refUrl: "https://en.wikipedia.org/wiki/Suryakumar_Yadav", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, type: "allrounder", refUrl: "https://en.wikipedia.org/wiki/Hardik_Pandya", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, type: "keeper", refUrl: "https://en.wikipedia.org/wiki/Rishabh_Pant", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, type: "allrounder", refUrl: "https://en.wikipedia.org/wiki/Ravindra_Jadeja", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, type: "allrounder", refUrl: "https://en.wikipedia.org/wiki/Axar_Patel", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, type: "bowler", refUrl: "https://en.wikipedia.org/wiki/Arshdeep_Singh", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, type: "bowler", refUrl: "https://en.wikipedia.org/wiki/Kuldeep_Yadav", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, type: "batter", refUrl: "https://en.wikipedia.org/wiki/Yashasvi_Jaiswal", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, type: "keeper", refUrl: "https://en.wikipedia.org/wiki/Sanju_Samson", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, type: "batter", refUrl: "https://en.wikipedia.org/wiki/Shubman_Gill", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, type: "bowler", refUrl: "https://en.wikipedia.org/wiki/Mohammed_Siraj", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, type: "batter", refUrl: "https://en.wikipedia.org/wiki/Rinku_Singh", status: "Unsold", soldTo: null, soldPrice: 0 }
+            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Virat_Kohli.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rohit_Sharma_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Jasprit_Bumrah_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Suryakumar_Yadav_in_2023.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Hardik_Pandya_2024_%28cropped%29.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rishabh_Pant_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Ravindra_Jadeja_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/2/23/Axar_Patel_in_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Arshdeep_Singh_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Kuldeep_Yadav_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/d/df/Yashasvi_Jaiswal_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/1/15/Sanju_Samson_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Shubman_Gill_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Mohammed_Siraj_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/5/58/Rinku_Singh_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 }
         ];
 
         let teams = [
@@ -231,18 +228,6 @@
             }
         }
 
-        function getAvatarSVG(type) {
-            if (type === 'batter') {
-                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 10l-4 4"/></svg>`;
-            } else if (type === 'bowler') {
-                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-rose-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><circle cx="19" cy="8" r="2" fill="currentColor"/></svg>`;
-            } else if (type === 'allrounder') {
-                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><polygon points="12,2 14,7 19,8 15,12 16,17 12,14 8,17 9,12 5,8 10,7" fill="currentColor" opacity="0.3"/></svg>`;
-            } else {
-                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3 5-5"/></svg>`;
-            }
-        }
-
         function renderPlayer() {
             const p = players[currentIndex];
             document.getElementById('player-name').innerText = p.name;
@@ -255,8 +240,7 @@
             document.getElementById('stat-avg-sr').innerText = `${p.avg} / ${p.sr}`;
             document.getElementById('stat-wkts').innerText = `${p.wkts} / ${p.econ}`;
 
-            document.getElementById('player-avatar-svg').innerHTML = getAvatarSVG(p.type);
-            document.getElementById('player-wiki-link').href = p.refUrl;
+            document.getElementById('player-photo').src = p.photo;
 
             const badge = document.getElementById('player-status-badge');
             if (p.status === 'Sold') {
