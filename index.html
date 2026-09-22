@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
-                        <!-- DIRECT PLAYER PHOTO PORTRAIT -->
+                        <!-- PLAYER PORTRAIT -->
                         <div class="md:col-span-4 flex justify-center">
                             <div class="w-36 h-36 md:w-40 md:h-40 rounded-2xl photo-frame border-2 border-cyan-500/40 overflow-hidden relative group bg-slate-900">
                                 <img id="player-photo" src="" alt="Player Photo" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
@@ -181,9 +181,9 @@
         const players = [
             { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Virat_Kohli.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
             { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Rohit_Sharma_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/f/f7/Jasprit_Bumrah_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Jasprit_Bumrah_%284%29.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
             { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/5/52/Suryakumar_Yadav_in_2023.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Hardik_Pandya_2024_%28cropped%29.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/5/58/Hardik_Pandya_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
             { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/f/fd/Rishabh_Pant_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
             { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/8/8c/Ravindra_Jadeja_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
             { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/2/23/Axar_Patel_in_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
@@ -242,10 +242,6 @@
 
             const photoEl = document.getElementById('player-photo');
             photoEl.src = p.photo;
-            photoEl.onerror = function() {
-                // Fallback image placeholder if direct link fails
-                this.src = "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=300&auto=format&fit=crop&q=80";
-            };
 
             const badge = document.getElementById('player-status-badge');
             if (p.status === 'Sold') {
