@@ -16,6 +16,10 @@
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.1);
         }
         .glow-text { text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        .avatar-glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
@@ -68,10 +72,15 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
-                        <!-- DIGITAL AVATAR HERE -->
+                        <!-- PROFESSIONAL DIGITAL CRICKET BADGE AVATAR -->
                         <div class="md:col-span-4 flex justify-center">
-                            <div class="w-40 h-40 bg-slate-800 rounded-2xl border-2 border-cyan-500/30 shadow-inner overflow-hidden flex items-center justify-center p-2">
-                                <img id="player-avatar-img" src="" alt="Player Avatar" class="w-full h-full object-contain drop-shadow-xl">
+                            <div class="w-40 h-40 rounded-2xl avatar-glow border-2 border-cyan-500/40 flex flex-col items-center justify-center relative overflow-hidden group">
+                                <div id="player-avatar-svg" class="w-full h-full flex items-center justify-center p-3">
+                                    <!-- Dynamic SVG inserted via script -->
+                                </div>
+                                <div class="absolute bottom-1.5 inset-x-2 text-center bg-slate-950/80 backdrop-blur py-0.5 rounded border border-slate-800">
+                                    <span class="text-[9px] tracking-widest text-cyan-400 uppercase font-bold">TEAM INDIA</span>
+                                </div>
                             </div>
                         </div>
 
@@ -150,11 +159,11 @@
             <!-- Right Sidebar -->
             <div class="lg:col-span-4 flex flex-col gap-6">
                 <div class="cyber-card rounded-2xl p-5">
-                    <h3 class="font-rajdhani text-lg font-bold text-cyan-400 mb-3 flex items-center gap-2">Queue (15 Players)</h3>
+                    <h3 class="font-rajdhani text-lg font-bold text-cyan-400 mb-3">Queue (15 Players)</h3>
                     <div class="space-y-2 max-h-72 overflow-y-auto pr-1" id="queue-list"></div>
                 </div>
                 <div class="cyber-card rounded-2xl p-5">
-                    <h3 class="font-rajdhani text-lg font-bold text-cyan-400 mb-3 flex items-center gap-2">Franchise Purses</h3>
+                    <h3 class="font-rajdhani text-lg font-bold text-cyan-400 mb-3">Franchise Purses</h3>
                     <div class="space-y-3" id="sidebar-teams-list"></div>
                 </div>
             </div>
@@ -168,27 +177,25 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="squads-grid"></div>
         </div>
-
     </main>
 
     <script>
-        // Utilizing DiceBear Avatars to generate face representations
         const players = [
-            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=ViratKohli&backgroundColor=c0aede", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=RohitSharma&backgroundColor=b6e3f4", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bumrah&backgroundColor=ffdfbf", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Surya&backgroundColor=c0aede", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Hardik&backgroundColor=ffdfbf", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pant&backgroundColor=b6e3f4", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jadeja&backgroundColor=c0aede", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Axar&backgroundColor=ffdfbf", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Arshdeep&backgroundColor=b6e3f4", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kuldeep&backgroundColor=c0aede", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Yashasvi&backgroundColor=ffdfbf", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sanju&backgroundColor=b6e3f4", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Gill&backgroundColor=c0aede", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Siraj&backgroundColor=ffdfbf", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rinku&backgroundColor=b6e3f4", status: "Unsold", soldTo: null, soldPrice: 0 }
+            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, type: "bowler", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, type: "allrounder", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, type: "keeper", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, type: "allrounder", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, type: "allrounder", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, type: "bowler", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, type: "bowler", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, type: "keeper", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, type: "bowler", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, type: "batter", status: "Unsold", soldTo: null, soldPrice: 0 }
         ];
 
         let teams = [
@@ -223,6 +230,19 @@
             }
         }
 
+        // Clean Professional Cricket Badge SVG Avatars
+        function getAvatarSVG(type) {
+            if (type === 'batter') {
+                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-cyan-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19 10l-4 4"/></svg>`;
+            } else if (type === 'bowler') {
+                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-rose-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><circle cx="19" cy="8" r="2" fill="currentColor"/></svg>`;
+            } else if (type === 'allrounder') {
+                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-amber-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><polygon points="12,2 14,7 19,8 15,12 16,17 12,14 8,17 9,12 5,8 10,7" fill="currentColor" opacity="0.3"/></svg>`;
+            } else {
+                return `<svg viewBox="0 0 24 24" class="w-20 h-20 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 11l3 3 5-5"/></svg>`;
+            }
+        }
+
         function renderPlayer() {
             const p = players[currentIndex];
             document.getElementById('player-name').innerText = p.name;
@@ -235,8 +255,7 @@
             document.getElementById('stat-avg-sr').innerText = `${p.avg} / ${p.sr}`;
             document.getElementById('stat-wkts').innerText = `${p.wkts} / ${p.econ}`;
 
-            // Load Player Face Avatar
-            document.getElementById('player-avatar-img').src = p.avatar;
+            document.getElementById('player-avatar-svg').innerHTML = getAvatarSVG(p.type);
 
             const badge = document.getElementById('player-status-badge');
             if (p.status === 'Sold') {
@@ -327,7 +346,6 @@
             const selectTeamId = document.getElementById('bidding-team-select').value;
             const team = teams.find(t => t.id === selectTeamId);
 
-            // STRICT FUND & SQUAD CHECK BEFORE RAISING BID
             if (team.squad.length >= 3) {
                 showToast("Squad Full", `${team.name} already has a full squad!`, "error");
                 return;
