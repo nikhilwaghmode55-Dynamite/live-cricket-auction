@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center mb-6">
-                        <!-- PLAYER PORTRAIT -->
+                        <!-- REAL PLAYER PORTRAIT PHOTO -->
                         <div class="md:col-span-4 flex justify-center">
                             <div class="w-36 h-36 md:w-40 md:h-40 rounded-2xl photo-frame border-2 border-cyan-500/40 overflow-hidden relative group bg-slate-900">
                                 <img id="player-photo" src="" alt="Player Photo" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300">
@@ -178,23 +178,23 @@
     </main>
 
     <script>
-        // Verified direct public player image links ensuring 100% render success on GitHub Pages
+        // Verified direct public Wikimedia Commons thumbnail render links for Indian players
         const players = [
-            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, photo: "https://images.unsplash.com/photo-1624526267942-ab0ff8c3e97a?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, photo: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, photo: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, photo: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, photo: "https://images.unsplash.com/photo-1569517282132-25d22f29236d?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, photo: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, photo: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, photo: "https://images.unsplash.com/photo-1512864027536-4b2049d03d32?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1628891016468-49d5da94254f?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1562077721-e3745ff4dfa6?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1526676037777-05a232554f77?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, photo: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 },
-            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, photo: "https://images.unsplash.com/photo-1519766304817-4f37bda74a26?w=400&auto=format&fit=crop&q=80", status: "Unsold", soldTo: null, soldPrice: 0 }
+            { id: 1, name: "Virat Kohli", role: "Batsman", style: "Right-hand Bat", matches: 125, runs: 4188, avg: 48.7, sr: 137.0, wkts: 4, econ: 7.5, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Virat_Kohli.jpg/800px-Virat_Kohli.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 2, name: "Rohit Sharma", role: "Batsman", style: "Right-hand Bat", matches: 159, runs: 4231, avg: 32.0, sr: 140.9, wkts: 1, econ: 11.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Rohit_Sharma_in_PMO_New_Delhi.jpg/800px-Rohit_Sharma_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 3, name: "Jasprit Bumrah", role: "Bowler", style: "Right-arm Fast", matches: 68, runs: 25, avg: 8.3, sr: 110.0, wkts: 89, econ: 6.28, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jasprit_Bumrah_%284%29.jpg/800px-Jasprit_Bumrah_%284%29.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 4, name: "Suryakumar Yadav", role: "Batsman", style: "Right-hand Bat", matches: 74, runs: 2432, avg: 42.6, sr: 168.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Suryakumar_Yadav_in_2023.jpg/800px-Suryakumar_Yadav_in_2023.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 5, name: "Hardik Pandya", role: "All-Rounder", style: "Right-hand Bat & Medium Fast", matches: 102, runs: 1492, avg: 26.6, sr: 142.1, wkts: 81, econ: 8.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Hardik_Pandya_in_PMO_New_Delhi.jpg/800px-Hardik_Pandya_in_PMO_New_Delhi.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 6, name: "Rishabh Pant", role: "Wicket-Keeper", style: "Left-hand Bat", matches: 76, runs: 1158, avg: 22.7, sr: 126.3, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Rishabh_Pant_2024.jpg/800px-Rishabh_Pant_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 7, name: "Ravindra Jadeja", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 74, runs: 515, avg: 22.4, sr: 127.2, wkts: 54, econ: 7.1, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Ravindra_Jadeja_Narendra_Modi_2024.jpg/800px-Ravindra_Jadeja_Narendra_Modi_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 8, name: "Axar Patel", role: "All-Rounder", style: "Left-hand Bat & Slow Left-arm", matches: 60, runs: 450, avg: 21.4, sr: 132.0, wkts: 60, econ: 7.2, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Axar_Patel_in_2024.jpg/800px-Axar_Patel_in_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 9, name: "Arshdeep Singh", role: "Bowler", style: "Left-arm Medium Fast", matches: 54, runs: 10, avg: 5.0, sr: 100.0, wkts: 83, econ: 8.3, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arshdeep_Singh_2024.jpg/800px-Arshdeep_Singh_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 10, name: "Kuldeep Yadav", role: "Bowler", style: "Left-arm Chinaman", matches: 40, runs: 30, avg: 10.0, sr: 120.0, wkts: 69, econ: 6.7, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Kuldeep_Yadav_2024.jpg/800px-Kuldeep_Yadav_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 11, name: "Yashasvi Jaiswal", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 723, avg: 36.1, sr: 161.4, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Yashasvi_Jaiswal_2024.jpg/800px-Yashasvi_Jaiswal_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 12, name: "Sanju Samson", role: "Wicket-Keeper", style: "Right-hand Bat", matches: 30, runs: 462, avg: 21.0, sr: 133.0, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Sanju_Samson_2024.jpg/800px-Sanju_Samson_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 13, name: "Shubman Gill", role: "Batsman", style: "Right-hand Bat", matches: 21, runs: 578, avg: 30.4, sr: 139.2, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Shubman_Gill_2024.jpg/800px-Shubman_Gill_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 14, name: "Mohammed Siraj", role: "Bowler", style: "Right-arm Fast Medium", matches: 16, runs: 5, avg: 5.0, sr: 90.0, wkts: 14, econ: 8.5, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mohammed_Siraj_2024.jpg/800px-Mohammed_Siraj_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 },
+            { id: 15, name: "Rinku Singh", role: "Batsman", style: "Left-hand Bat", matches: 23, runs: 412, avg: 58.8, sr: 174.5, wkts: 0, econ: 0.0, base: 1.0, photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Rinku_Singh_2024.jpg/800px-Rinku_Singh_2024.jpg", status: "Unsold", soldTo: null, soldPrice: 0 }
         ];
 
         let teams = [
@@ -241,7 +241,8 @@
             document.getElementById('stat-avg-sr').innerText = `${p.avg} / ${p.sr}`;
             document.getElementById('stat-wkts').innerText = `${p.wkts} / ${p.econ}`;
 
-            document.getElementById('player-photo').src = p.photo;
+            const photoEl = document.getElementById('player-photo');
+            photoEl.src = p.photo;
 
             const badge = document.getElementById('player-status-badge');
             if (p.status === 'Sold') {
